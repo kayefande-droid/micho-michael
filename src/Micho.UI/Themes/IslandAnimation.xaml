@@ -1,0 +1,10 @@
+<Border x:Name="IslandRoot" Width="180" Height="48" Background="#E817191F" BorderBrush="#35FFFFFF" BorderThickness="1" CornerRadius="26" Padding="12">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Ellipse Width="10" Height="10" Fill="#69A9FF" VerticalAlignment="Center"/>
+        <TextBlock Grid.Column="1" Text="MICHO" Foreground="White" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="13" FontWeight="SemiBold"/>
+    </Grid>
+</Border>

@@ -1,0 +1,20 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="MichoBackground">#08090D</Color>
+    <Color x:Key="MichoSurface">#17191F</Color>
+    <Color x:Key="MichoElevated">#222630</Color>
+    <Color x:Key="MichoBlue">#69A9FF</Color>
+    <Color x:Key="MichoViolet">#A78BFA</Color>
+    <Color x:Key="MichoCyan">#67E8F9</Color>
+    <SolidColorBrush x:Key="MichoTextBrush" Color="#F5F6FA"/>
+    <SolidColorBrush x:Key="MichoSecondaryBrush" Color="#A7ACB8"/>
+    <SolidColorBrush x:Key="MichoAccentBrush" Color="{StaticResource MichoBlue}"/>
+    <Style x:Key="MichoGlassButton" TargetType="Button">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#252B36"/>
+        <Setter Property="BorderBrush" Value="#35FFFFFF"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="Padding" Value="14,9"/>
+    </Style>
+</ResourceDictionary>
