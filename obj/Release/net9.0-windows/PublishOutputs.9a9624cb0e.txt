@@ -1,0 +1,5 @@
+C:\Users\Admin\PycharmProjects\MICHO\dist-micho\MICHO.exe
+C:\Users\Admin\PycharmProjects\MICHO\dist-micho\MICHO.dll
+C:\Users\Admin\PycharmProjects\MICHO\dist-micho\MICHO.deps.json
+C:\Users\Admin\PycharmProjects\MICHO\dist-micho\MICHO.runtimeconfig.json
+C:\Users\Admin\PycharmProjects\MICHO\dist-micho\MICHO.pdb

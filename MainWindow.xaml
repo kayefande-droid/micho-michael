@@ -1,0 +1,194 @@
+<Window x:Class="MICHO.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MICHO"
+        mc:Ignorable="d"
+        Title="MICHO" Height="140" Width="320"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        WindowState="Normal"
+        Focusable="True">
+    
+
+    <Grid>
+        <!-- Position: Top Center -->
+        <Grid.RenderTransform>
+            <TranslateTransform X="{Binding WindowLeft, Mode=OneWay}" Y="{Binding WindowTop, Mode=OneWay}" />
+        </Grid.RenderTransform>
+
+        <Border x:Name="GlassBackground"
+                Background="#08090D"
+                CornerRadius="20"
+                BorderBrush="#17191F"
+                BorderThickness="1"
+                Padding="12"
+                Effect="{Binding GlassEffect, Mode=OneWay}" />
+
+        <!-- Collapsed Panel (visible when island is collapsed) -->
+        <Border x:Name="CollapsedPanel"
+                Background="Transparent"
+                Margin="0,0,0,0"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Grid Margin="0">
+                <!-- Avatar indicator -->
+                <Ellipse Width="40" Height="40" 
+                         HorizontalAlignment="Center" 
+                         VerticalAlignment="Top"
+                         Fill="#69A9FF"
+                         RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <RotateTransform x:Name="AvatarRotateTransform" Angle="0" />
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+
+                <!-- MICHO text -->
+                <TextBlock Text="MICHO"
+                           FontFamily="/assets/fonts/#Montserrat"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           Foreground="#F5F6FA"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
+                <!-- Time display -->
+                <TextBlock x:Name="TimeTextBlock"
+                           Text="00:00:00"
+                           FontFamily="/assets/fonts/#Montserrat"
+                           FontSize="14"
+                           Foreground="#A7ACB8"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Bottom" />
+            </Grid>
+        </Border>
+
+        <!-- Expanded Panel (visible when island is expanded) -->
+        <Border x:Name="ExpandedPanel"
+                Background="#17191F"
+                CornerRadius="20"
+                BorderBrush="#222630"
+                BorderThickness="1"
+                Padding="16,16,16,20"
+                Visibility="Collapsed"
+                Margin="0">
+            <Grid>
+                <!-- MICHO Avatar in expanded state -->
+                <Grid x:Name="AvatarGrid"
+                      Width="80" Height="80"
+                      HorizontalAlignment="Left"
+                      VerticalAlignment="Top">
+                    <Ellipse Fill="#69A9FF" />
+                    <TextBlock Text="🤖"
+                              FontSize="32"
+                              Foreground="#08090D"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
+                </Grid>
+
+                <!-- MICHO title -->
+                <TextBlock Text="MICHO"
+                           FontFamily="/assets/fonts/#Montserrat"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Foreground="#F5F6FA"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top" />
+
+                <!-- Status text -->
+                <TextBlock x:Name="StatusTextBlock"
+                           Text="Active"
+                           FontFamily="/assets/fonts/#Montserrat"
+                           FontSize="14"
+                           Foreground="#A7ACB8"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="0,40,0,0" />
+
+                <!-- Controls row -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,16,16">
+                    <Button Content="⏸️"
+                            Width="32" Height="32"
+                            Margin="0,0,8,0"
+                            Click="PauseButton_Click"
+                            ToolTip="Pause" />
+                    <Button Content="▶️"
+                            Width="32" Height="32"
+                            Click="PlayButton_Click"
+                            ToolTip="Play" />
+                    <Button Content="⏹️"
+                            Width="32" Height="32"
+                            Click="StopButton_Click"
+                            ToolTip="Stop" />
+                </StackPanel>
+
+                <!-- Progress bar for media -->
+                <ProgressBar x:Name="PlaybackProgress"
+                             Height="8"
+                             Margin="0,0,0,8"
+                             Minimum="0"
+                             Maximum="100"
+                             Value="0"
+                             Foreground="#69A9FF"
+                             Background="#222630"
+                             BorderBrush="#17191F"
+                             BorderThickness="1" />
+
+                <!-- Time displays -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="0,0,16,8">
+                    <TextBlock x:Name="CurrentTime"
+                               Text="0:00"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8"
+                               Margin="0,0,8,0" />
+                    <TextBlock x:Name="TotalTime"
+                               Text="3:45"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8" />
+                </StackPanel>
+
+                <!-- System monitoring -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Margin="16,0,0,8">
+                    <TextBlock Text="CPU:"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8"
+                               Margin="0,0,4,0" />
+                    <TextBlock x:Name="CpuText"
+                               Text="0%"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8" />
+                    <TextBlock Text="RAM:"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8"
+                               Margin="8,0,4,0" />
+                    <TextBlock x:Name="RamText"
+                               Text="0%"
+                               FontFamily="/assets/fonts/#Montserrat"
+                               FontSize="12"
+                               Foreground="#A7ACB8" />
+                </StackPanel>
+
+                <!-- Click drag area -->
+                <Border Padding="12" 
+                        Background="Transparent"
+                        MouseLeftButtonDown="Border_MouseLeftButtonDown" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
